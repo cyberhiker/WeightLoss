@@ -225,6 +225,12 @@ input.textEntry
     border: 1px solid #ccc;
 }
 
+input.textShortEntry
+{
+    width: 50px;
+    border: 1px solid #ccc;
+}
+
 input.passwordEntry 
 {
     width: 320px;

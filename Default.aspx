@@ -5,12 +5,9 @@
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
     <h2>
-        Welcome!</h2>
+        Welcome <asp:Label ID="lblFriendlyName" runat="server" />!</h2><br /><br />
     <asp:Panel ID="pnlEnterData" runat="server" Visible="false">
         Weigh in is today (<asp:Label ID="lblWeekOf" runat="server"></asp:Label>)!  Please enter in your information below and upload your photo below.
-        <p>
-            You will appear as: <asp:Label ID="lblFriendlyName" runat="server" />
-        </p>
         <asp:ValidationSummary ID="LogWeightSummary" runat="server" CssClass="failureNotification" 
             ValidationGroup="LogWeightGrp"/>
         <p>
@@ -26,8 +23,8 @@
          <br />
         </p>
         <p>
-            <asp:Label ID="lblFileUpload" runat="server" AssociatedControlID="uploadImage">Today's Picture:</asp:Label>
-            <asp:FileUpload ID="uploadImage" runat="server" />
+            <asp:Label ID="lblFileUpload" runat="server"  AssociatedControlID="uploadImage">Today's Picture:</asp:Label>
+            <asp:FileUpload ID="uploadImage" runat="server" accept="image/*" />
             <asp:RequiredFieldValidator ID="vldFileUpload" runat="server" ControlToValidate="uploadImage" 
                 CssClass="failureNotification" ErrorMessage="An image is required." ToolTip="An image is required." 
                 ValidationGroup="LogWeightGrp">*</asp:RequiredFieldValidator>
@@ -57,7 +54,8 @@
     </h2>
     <br />
     <asp:GridView ID="grdLeaderBoard" runat="server" DataSourceID="sqlLeaderBoard" 
-        Width="535px" >
+        Width="535px" RowStyle-HorizontalAlign="Center" AlternatingRowStyle-HorizontalAlign="Center" 
+        RowStyle-CssClass="rowstyle" AlternatingRowStyle-CssClass="alternaterowstyle" >
         <EmptyDataTemplate>
             No one has posted a weight yet!  But this is where the leader board is going to be!
         </EmptyDataTemplate>

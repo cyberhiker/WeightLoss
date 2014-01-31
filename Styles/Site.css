@@ -33,6 +33,24 @@ p
     line-height: 1.6em;
 }
 
+/* TABLE   
+----------------------------------------------------------*/
+
+td
+{
+    padding: 3pt 3pt 3pt 3pt;
+}
+
+td.rowstyle
+{
+    padding: 3pt 3pt 3pt 3pt;
+}
+
+td.alternaterowstyle
+{
+    padding: 3pt 3pt 3pt 3pt;
+    background-color: Gray;
+}
 
 /* HEADINGS   
 ----------------------------------------------------------*/

@@ -7,6 +7,7 @@ Public Class _Default
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         lblNextWeighIn.Text = "The next weigh in is on " & Format(nextDOW(ConfigurationManager.AppSettings("WeighInDay")), "MM/dd/yyyy") & "."
+        'lblNextWeighIn.Text = "The next weigh in is on 01/22/2014."
 
         Dim FirstName As String = HttpContext.Current.Profile.GetPropertyValue("FirstName")
         Dim LastName As String = HttpContext.Current.Profile.GetPropertyValue("LastName")
@@ -99,8 +100,8 @@ Public Class _Default
             uploadImage.SaveAs(ConfigurationManager.AppSettings("ImageDirectory") & "\" & _
             Format(Now, "yyyy-MM-dd") & "_" & lblFriendlyName.Text.Replace(".", "").Replace(" ", "") & ".jpg")
         End If
-        txtWeight.Text = ""
         sqlLeaderBoard.Insert()
+        txtWeight.Text = ""
         Response.Redirect("default.aspx")
     End Sub
 

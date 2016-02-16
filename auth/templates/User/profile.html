@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block main %}
+    <div class="container">
+        <div class="row">
+            <div class="page-header">
+                <h1 class="text-center">Hi {{ current_user.cn }}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-md-offset-3">
+                <img src="{{ current_user.gravatar }}?d=retro" alt="" class="img-circle img-responsive mg-btm">
+            </div>
+            <div class="col-md-3">
+                <dl>
+                    <dt>Email</dt>
+                    <dd>{{ current_user.email }}</dd>
+                    <dt>First name</dt>
+                    <dd>{{ current_user.first_name }}</dd>
+                    <dt>Last name</dt>
+                    <dd>{{ current_user.last_name }}</dd>
+                </dl>
+                <a class="btn btn-primary btn-lg" href="{{ url_for_security('logout') }}">Logout</a>
+            </div>
+        </div>
+        <!--
+        {% with connections=current_user.social_connections() %}
+            {% if connections %}
+                <div class="row">
+                    <div class="text-center mg-btm">
+                        <h2 class="text-center">Connections</h2>
+                        {% for connection in connections %}
+                            <a href="{{ connection.profile_url }}">
+                                <img src="{{ connection.image_url }}" alt="" width="50" height="50" class="img-circle">
+                            </a>
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+            {% endif %}
+        {% endwith %}
+        -->
+        <div class="row">
+            <div class="col-md-1">&nbsp;</div>
+            <div class="col-md-4 text-center">
+                <h3>Your Entries</h3>
+                <table class="table">
+                    <tr>
+                        <th class="text-center">Week Of</th>
+                        <th class="text-center">Weight</th>
+                    </tr>
+                    {% for w in ww %}
+                    <tr><td>{{ fixDate(w.weekOf) }}</td><td>{{ w.weight }}</td></tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="col-md-4 text-center">
+                <br>
+                {% if today == weighDay %}
+                    {% if needsEntry %}
+                        <h4>Today is Weigh in Day</h4>
+                        <div class="center">
+                            <form action="/record" method="post" enctype="multipart/form-data">
+                                Weight: <input type="input" name="weight"><br><br>
+                                <input type="file" name="file"  class="btn btn-default btn-file"><br>
+                                <input type="submit" value="Upload" class="btn btn-primary"><br>
+                            </form>
+                        </div>
+                    {% else %}
+                        <h4>You've already entered your weight.  Please see your records to the left.</h4>
+                    {% endif %}
+                {% else %}
+                    <h4>Weigh in day is {{ weighDay }} not today.</h4>
+                {% endif %}
+            </div>
+            <div class="col-md-4">&nbsp;</div><br>
+            <div class="col-md-4 text-center">
+                <h3>Leaderboard</h3>
+                <table class="table">
+                    <tr>
+                        <th class="text-center">Name</th>
+                    </tr>
+                    {% for w in ww %}
+                    <tr><td>{{ fixDate(w.weekOf) }}</td><td>{{ w.weight }}</td></tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

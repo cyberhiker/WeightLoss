@@ -1,0 +1,14 @@
+flask-social-blueprint>=0.7
+Flask>=0.10.1
+Flask-Babel>=0.9
+Flask-Security>=1.7.5
+Flask-Mail>=0.9.1
+Flask-Script
+Flask-SQLAlchemy
+facebook-sdk>=0.4.0
+google-api-python-client>=1.2
+python-twitter
+PyOpenSSL
+ndg-httpsclient
+pyasn1
+psycopg2

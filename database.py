@@ -38,7 +38,7 @@ from flask_security import UserMixin, RoleMixin, Security, SQLAlchemyUserDatasto
 class Weeks(db.Model):
     __tablename__ = 'weeks'
     id = sa.Column(sa.Integer(), primary_key=True)
-    weekStart = sa.Column(sa.DateTime, unique=True)
+    weekstart = sa.Column(sa.DateTime, unique=True)
 
     def __init__(self, weekStart=None):
         self.weekStart = weekStart
@@ -51,27 +51,27 @@ class Weights(db.Model):
     __tablename__ = 'weights'
     id = sa.Column(sa.Integer(), primary_key=True)
     email = sa.Column(sa.String(50))
-    weight = sa.Column(sa.Float)
-    weekOf = sa.Column(sa.DateTime)
-    dateEntered = sa.Column(sa.DateTime)
+    flweight = sa.Column(sa.Float)
+    weekof = sa.Column(sa.DateTime)
+    dateentered = sa.Column(sa.DateTime)
 
-    def __init__(self, email=None, weight=None, weekOf=None, dateEntered=None):
+    def __init__(self, email=None, weight=None, weekof=None, dateentered=None):
         self.email = email
         self.weight = weight
-        self.weekOf = weekOf
-        self.dateEntered = dateEntered
+        self.weekof = weekof
+        self.dateentered = dateentered
 
     def __repr__(self):
-        return "<Weights(email='%s', weight='%s', weekOf='%s', dateEntered='%s')>" % (
-            self.email, self.weight, self.weekOf, self.dateEntered)
+        return "<Weights(email='%s', weight='%s', weekof='%s', dateentered='%s')>" % (
+            self.email, self.weight, self.weekof, self.dateentered)
 
 
 class Measurements(db.Model):
     __tablename__ = 'measurements'
     id = sa.Column(sa.Integer(), primary_key=True)
     email = sa.Column(sa.String(50))
-    weekOf = sa.Column(sa.DateTime)
-    dateEntered = sa.Column(sa.DateTime)
+    weekof = sa.Column(sa.DateTime)
+    dateentered = sa.Column(sa.DateTime)
     waist = sa.Column(sa.Float)
     thigh = sa.Column(sa.Float)
     hips = sa.Column(sa.Float)
@@ -79,10 +79,10 @@ class Measurements(db.Model):
     arm = sa.Column(sa.Float)
     calf = sa.Column(sa.Float)
 
-    def __init__(self, email=None, weekOf=None, dateEntered=None, waist=None, thigh=None, hips=None, chest=None, arm=None, calf=None):
+    def __init__(self, email=None, weekof=None, dateentered=None, waist=None, thigh=None, hips=None, chest=None, arm=None, calf=None):
         self.email = email
-        self.weekOf = weekOf
-        self.dateEntered = dateEntered
+        self.weekof = weekof
+        self.dateentered = dateentered
         self.waist = waist
         self.thigh = thigh
         self.hips = hips
@@ -91,5 +91,5 @@ class Measurements(db.Model):
         self.calf = calf
 
     def __repr__(self):
-        return "<Measurements(email='%s', weekOf='%s', dateEntered='%s', waist='%s', thigh='%s', hips='%s', chest='%s', arm='%s', calf='%s')>" % (
-            self.email, self.weekOf, self.dateEntered, self.waist, self.thigh, self.hips, self.chest, self.arm, self.calf)
+        return "<Measurements(email='%s', weekof='%s', dateentered='%s', waist='%s', thigh='%s', hips='%s', chest='%s', arm='%s', calf='%s')>" % (
+            self.email, self.weekof, self.dateentered, self.waist, self.thigh, self.hips, self.chest, self.arm, self.calf)

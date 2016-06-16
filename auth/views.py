@@ -30,11 +30,11 @@ def profile():
     elif settings.WEIGHINDAY == 6:
         weighDay = 'Saturday'
 
-    checkMe = Weights.query.filter_by(email=current_user.email, weekOf=datetime.now().strftime('%Y-%m-%d'))
+    checkMe = Weights.query.filter_by(email=current_user.email, weekof=datetime.now().strftime('%Y-%m-%d'))
     logging.debug(checkMe)
     today = datetime.now().strftime('%A')
 
-    return render_template('User/profile.html', ww=ww, fixDate=fixDate, today=today, weighDay=weighDay, needsEntry=True)
+    return render_template('User/profile.html', ww=ww, fixdate=fixdate, today=today, weighday=weighday, needsEntry=True)
 
 def fixDate(thisDate):
     thisWeek = thisDate.strftime('%Y')+ '-' + thisDate.strftime('%m') + '-' + thisDate.strftime('%d')

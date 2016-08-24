@@ -2,17 +2,12 @@ from flask import Flask
 from sqlalchemy import DDL, event
 from flask.ext.login import LoginManager, UserMixin
 from flask.ext.sqlalchemy import SQLAlchemy
+import settings
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '47e585de7f22984d5ee291c2f31412384bfc32d0'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:nothing@localhost:32770/WeightLoss'
-app.config['OAUTH_CREDENTIALS'] = {
-    'facebook': {
-        'id': '247355352098025',
-        'secret': 'e0534de8dc07fc8bbc5cd852d975d983'
-    }
-}
-
+app.config['SECRET_KEY'] = settings.SECRET_KEY
+app.config['SQLALCHEMY_DATABASE_URI'] = settings.SQLALCHEMY_DATABASE_URI
+app.config['OAUTH_CREDENTIALS'] = settings.OAUTH_CREDENTIALS
 
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)

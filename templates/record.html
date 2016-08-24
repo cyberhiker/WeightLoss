@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block main %}
+<div class="container">
+    <div class="row">
+        <div class="page-header">
+            <h2>Enter this Week's Record</h2>
+        </div>
+    </div>
+    <div class="row">
+        
+        <div class="center">
+            <form action="" method="post" enctype="multipart/form-data">
+                <p>
+                    Weight: <input type="input" name="weight"><br><br>
+                    <input type="file" name="file"><br>
+                    <input type="submit" value="Upload"><br>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

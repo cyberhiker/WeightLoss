@@ -13,7 +13,7 @@ def load_user(id):
 # renders a home page
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('base.html')
 
 
 @app.route('/success')
@@ -63,8 +63,8 @@ def get_status():
         status = str(async_operation.status.code)
         print (async_operation.status.code)
     else:
-        print ("async operation not in session")
-        return redirect(url_for(error))
+        print ('async operation not in session')
+        return redirect(url_for('error'))
 
     return status
 
@@ -74,7 +74,6 @@ def show_preloader_start_authentication():
 
     if not current_user.is_anonymous:
         return redirect(url_for('index'))
-
 
     # store in the session id of the asynchronous operation
     status_pending = AsyncOperationStatus.query.filter_by(code='pending').first()

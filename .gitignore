@@ -100,5 +100,5 @@ UpgradeLog*.XML
 __pycache__/database.cpython-34.pyc
 
 *.pyc
-90day/
 venv/
+imageUploads/

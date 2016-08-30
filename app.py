@@ -44,6 +44,11 @@ def logout():
     return redirect(url_for('index'))
 
 
+@app.route('/admin')
+def admin():
+    render_template('admin.html')
+
+
 @app.route('/authorize')
 def facebook_authorize():
     if not current_user.is_anonymous:

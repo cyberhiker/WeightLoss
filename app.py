@@ -4,10 +4,15 @@ from facebook_auth import FacebookSignIn
 from models import *
 from task import taskman
 
+from wtforms import validators
+
+import flask_admin as admin
+from flask_admin.contrib import sqla
+from flask_admin.contrib.sqla import ModelView
 
 @login_manager.user_loader
 def load_user(id):
-    return UserProfile.query.get(int(id))
+    return Users.query.get(int(id))
 
 
 # renders a home page
@@ -20,8 +25,8 @@ def index():
 def success():
     if 'async_operation_id' in session:
         async_operation_id = session['async_operation_id']
-        async_operation = AsyncOperation.query.filter_by(id=async_operation_id).join(UserProfile).first()
-        user = UserProfile.query.filter_by(id=async_operation.user_profile_id).first()
+        async_operation = AsyncOperation.query.filter_by(id=async_operation_id).join(Users).first()
+        user = Users.query.filter_by(id=async_operation.user_profile_id).first()
         login_user(user, True)
     return redirect(url_for('index'))
 
@@ -109,11 +114,11 @@ def external_auth():
         return redirect(url_for('error'))
 
     # retrieve the user data from the database
-    user = UserProfile.query.filter_by(facebook_id=facebook_id).first()
+    user = Users.query.filter_by(facebook_id=facebook_id).first()
 
     # if the user is new, we store theirs credentials in user_profile table
     if not user:
-        user = UserProfile(facebook_id=facebook_id, email=email, first_name=first_name, last_name=last_name)
+        user = Users(facebook_id=facebook_id, email=email, first_name=first_name, last_name=last_name)
         db.session.add(user)
         db.session.commit()
 
@@ -128,5 +133,13 @@ def external_auth():
 
 
 if __name__ == '__main__':
+
     db.create_all()
+
+    # Create admin
+    admin = admin.Admin(app, name='90 Day Challenge Admin', template_mode='bootstrap3')
+
+    # Add views
+    admin.add_view(ModelView(Users, db.session))
+
     app.run(debug=True)

@@ -1,36 +1,68 @@
 {% extends "body.html" %}
 {% block body %}
-    <div class="page-header">
-        <h1 class="lead">Healthy Mama's 90 Day Challenge</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-8">
+            <h1 class="lead">Healthy Mama's 90 Day Challenge</h1>
+        </div>
+        <div class="col-xs-6 col-md-4">
+            <br />
+            <p><a class="btn btn-primary" href="{{ url_for('logout') }}">Logout</a></p>
+        </div>
     </div>
-        {% for message in get_flashed_messages() %}
-            <p><b>Error</b>: {{ message }}</p>
-        {% endfor %}
-        
-        {% if current_user.is_authenticated %}
+    {% for message in get_flashed_messages() %}
+        <p><b>Error</b>: {{ message }}</p>
+    {% endfor %}
+
+    {% if current_user.is_authenticated %}
+        <div class="row">
             <h2 class="lead">Hi, {{ current_user.first_name }}!</h2>
-            <div class="container">
-                <div class="row">
-                    <h2 class="lead">Enter this Week's Record</h2>
+        </div>
+        <div class="row">
+            <h2 class="lead">Enter this Week's Record</h2>
+        </div>
+        <div class="row">
+            <form action="/record" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Weight:</label>
+                    <input type="input" name="weight">
                 </div>
-                <div class="row">
-                    <div class="center">
-                        <form action="" method="post" enctype="multipart/form-data">
-                            <p>
-                                Weight: <input type="input" name="weight"><br><br>
-                                <input type="file" name="file"><br>
-                                <input class="btn btn-default" type="submit" value="Upload"><br>
-                            </p>
-                        </form>
-                    </div>
+                <div class="form-group">
+                    <label>Picture:</label><input type="file" name="file">
                 </div>
+                <div class="form-group">
+                    <input class="btn btn-primary" type="submit" value="Upload">
+                </div>
+            </form>
+        </div>
+        {% if current_user.is_authenticated %}
+            <div class="row">
+                <h2 class="lead">Enter starting measurements</h2>
             </div>
-            <p></p>
-            <p><a class="btn btn-default" href="{{ url_for('logout') }}">Logout</a></p>
-        {% else %}
-            <p>
-                <a class="btn btn-block btn-social btn-facebook" href="{{ url_for('facebook_authorize') }}">
-                    <span class="fa fa-facebook"></span>Login with Facebook</a>
-            </p>
+        {% elif current_user.is_authenticated %}
+            <div class="row">
+                <h2 class="lead">Enter starting measurements</h2>
+            </div>
         {% endif %}
+        <div class="row">
+            <form action="/recordMeasurement" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Weight:</label>
+                    <input type="input" name="weight">
+                </div>
+                <div class="form-group">
+                    <label>Weight:</label>
+                    <input type="input" name="weight"
+                </div>
+                <div class="form-group">
+                    <input class="btn btn-primary" type="submit" value="Upload">
+                </div>
+            </form>
+        </div>
+    {% else %}
+        <p><a class="btn btn-block btn-social btn-facebook" href="{{ url_for('facebook_authorize') }}">
+                <span class="fa fa-facebook"></span>Login with Facebook</a>
+        </p>
+    {% endif %}
+</div>
 {% endblock %}

@@ -6,7 +6,7 @@ from task import taskman
 
 from wtforms import validators
 
-import flask_admin as admin
+import flask_admin
 from flask_admin.contrib import sqla
 from flask_admin.contrib.sqla import ModelView
 
@@ -137,7 +137,7 @@ if __name__ == '__main__':
     db.create_all()
 
     # Create admin
-    admin = admin.Admin(app, name='90 Day Challenge Admin', template_mode='bootstrap3')
+    admin = flask_admin.Admin(app, name='90 Day Challenge Admin', template_mode='bootstrap3')
 
     # Add views
     admin.add_view(ModelView(Users, db.session))

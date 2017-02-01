@@ -57,3 +57,6 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 #Application Variables
 WEIGHINDAY = 1
+START_DATE = '2/15/2017'
+END_DATE = '5/15/2017'
+
